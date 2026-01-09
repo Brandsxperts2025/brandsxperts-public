@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandsXperts - Tu Agencia Digital en Minutos</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #aaa;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .cta {
+            background: #00ff88;
+            color: #000;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s;
+        }
+
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #00ff88;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <h1>Tu Sistema de Ventas<br>Listo en 60 Segundos.</h1>
+        <p>No contrates agencia. Sé la agencia. Plataforma automatizada de crecimiento digital.</p>
+        <a href="start.html" class="cta">Empezar Ahora</a>
+    </header>
+
+    <section class="grid">
+        <div class="card">
+            <h3>Plan Inicial</h3>
+            <div class="price">$49/mes</div>
+            <p>Landing Page de Alta Conversión</p>
+            <p>WhatsApp CRM</p>
+            <a href="start.html?plan=plan1" class="cta" style="font-size:1rem; padding: 10px 20px;">Elegir</a>
+        </div>
+        <div class="card" style="border-color: #00ff88; transform: scale(1.05);">
+            <h3>Plan Crecimiento</h3>
+            <div class="price">$99/mes</div>
+            <p>Web Completa + Panel de Control</p>
+            <p>Gestión de Leads</p>
+            <p>SEO Dinámico</p>
+            <a href="start.html?plan=plan2" class="cta" style="font-size:1rem; padding: 10px 20px;">Elegir
+                (Recomendado)</a>
+        </div>
+        <div class="card">
+            <h3>Plan Dominio</h3>
+            <div class="price">$199/mes</div>
+            <p>Todo lo anterior + Blog SEO</p>
+            <p>Estrategia de Contenidos</p>
+            <a href="start.html?plan=plan3" class="cta" style="font-size:1rem; padding: 10px 20px;">Elegir</a>
+        </div>
+    </section>
+</body>
+
+</html>

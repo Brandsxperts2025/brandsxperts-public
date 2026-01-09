@@ -1,0 +1,3 @@
+[build]
+publish = "commercial/public"
+functions = "netlify/functions"
