@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BRANDSXPERTS | Master Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #00ff9d;
+            --bg: #0a0a0a;
+            --card: #111;
+            --text: #eee;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .badge {
+            background: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #333;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-weight: 900;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+
+        pre {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #333;
+            overflow-x: auto;
+            color: #0f0;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>BrandsXperts <span class="badge">FACTORY ADMIN</span></h1>
+            <p>SaaS Provisioning Console</p>
+        </header>
+
+        <div class="card">
+            <h2 style="margin-top: 0;">🚀 Activate New Agency</h2>
+
+            <label>Admin API Key</label>
+            <input type="password" id="apiKey" placeholder="Access Token">
+
+            <hr style="border-color: #222; margin: 25px 0;">
+
+            <div class="grid">
+                <div>
+                    <label>Agency Name</label>
+                    <input type="text" id="name" placeholder="E.g. Digital Growth Agency">
+                </div>
+                <div>
+                    <label>WhatsApp (Owner)</label>
+                    <input type="text" id="whatsapp" placeholder="51999999999">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="grid">
+                <div>
+                    <label>Subdomain (ID)</label>
+                    <input type="text" id="subdomain" placeholder="agency-name">
+                </div>
+                <div>
+                    <label>Plan Tier</label>
+                    <select id="plan">
+                        <option value="plan1">PLAN 1 - Landing Page ($49)</option>
+                        <option value="plan2">PLAN 2 - Web + Panel ($99)</option>
+                        <option value="plan3">PLAN 3 - Full Suite ($199)</option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn-primary" id="activateBtn">⚡ Provision Agency Site</button>
+            <div id="loading" class="status" style="display: none;">🏭 Manufacturing SaaS instance... (This takes ~10s)
+            </div>
+        </div>
+
+        <div class="card" id="resultCard" style="display: none;">
+            <h3>✅ Activation Successful</h3>
+            <pre id="resultLog"></pre>
+            <a href="#" id="siteLink" target="_blank" style="color: var(--accent);">Open New Site &rarr;</a>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('activateBtn');
+        const loading = document.getElementById('loading');
+        const resultCard = document.getElementById('resultCard');
+        const log = document.getElementById('resultLog');
+        const siteLink = document.getElementById('siteLink');
+
+        btn.addEventListener('click', async () => {
+            const key = document.getElementById('apiKey').value;
+            if (!key) return alert("🔑 Missing Admin API Key");
+
+            const payload = {
+                name: document.getElementById('name').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                plan: document.getElementById('plan').value,
+                id: document.getElementById('subdomain').value || ('cl_' + Date.now()),
+                amount: '0.00', // Admin override
+                payment_method: 'Manual_Admin',
+                activated_by: 'PROVISION_CONSOLE'
+            };
+
+            // UI State
+            btn.disabled = true;
+            btn.style.opacity = 0.5;
+            loading.style.display = 'block';
+            resultCard.style.display = 'none';
+
+            try {
+                // Call Serverless Factory
+                const res = await fetch('/.netlify/functions/api/admin/activate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': key },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    log.innerText = JSON.stringify(data, null, 2);
+                    siteLink.href = data.url;
+                    resultCard.style.display = 'block';
+                } else {
+                    alert('Error: ' + (data.error || 'Provisioning Failed'));
+                }
+
+            } catch (e) {
+                alert('Network Error: ' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.style.opacity = 1;
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
