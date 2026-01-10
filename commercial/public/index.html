@@ -4,245 +4,708 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandsXperts - Tu Agencia Digital en Minutos</title>
+    <title>BrandsXperts - Tu Sistema de Ventas en 60 Segundos</title>
+    <meta name="description" content="Plataforma automatizada para crear tu agencia digital en segundos.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
-            scroll-behavior: smooth;
+        :root {
+            /* Sasstech Inspired Palette */
+            --bg-body: #020205;
+            /* Deep, almost black */
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --primary: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #00e0ff;
+            --gradient-main: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+            --gradient-text: linear-gradient(90deg, #fff 0%, #d8b4fe 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --font-main: 'Outfit', sans-serif;
         }
 
-        .hero {
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            background: linear-gradient(90deg, #fff, #888);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #aaa;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        .cta {
-            background: #00ff88;
-            color: #000;
-            padding: 15px 30px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: #111;
-            border: 1px solid #333;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            border-color: #00ff88;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #00ff88;
-        }
-
-        /* Form Section */
-        #register {
-            padding: 60px 20px;
-            background: #050505;
-            border-top: 1px solid #222;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #111;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            background: #000;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 6px;
+        * {
             box-sizing: border-box;
         }
 
-        input:focus {
-            border-color: #00ff88;
-            outline: none;
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
         }
 
-        .loader {
-            display: none;
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(2, 2, 5, 0.7);
+            border-bottom: var(--glass-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: #fff !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 180px 20px 100px;
             text-align: center;
-            margin-top: 20px;
-            color: #00ff88;
+            position: relative;
         }
 
-        #success {
-            display: none;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: #a78bfa;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin: 0 auto 25px;
+            max-width: 900px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff 20%, #818cf8 50%, #c084fc 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #fff;
+        }
+
+        /* --- Stats / Trusted --- */
+        .trusted {
+            padding: 40px 0;
             text-align: center;
-            animation: fadeIn 0.5s;
+            border-bottom: var(--glass-border);
         }
 
-        .success-box {
-            background: #001a0f;
-            border: 1px solid #00ff88;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .trusted p {
+            color: #64748b;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
-        .url-link {
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        .logo-item {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* --- Section Shared --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- Problems Grid (Sasstech Style) --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #818cf8;
+            margin-bottom: 25px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* --- Pricing (Modern Cards) --- */
+        .pricing-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card.sub {
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .pricing-card.main {
+            border: 2px solid #6366f1;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, rgba(2, 2, 5, 0) 100%);
+        }
+
+        .plan-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .plan-features {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li svg {
+            color: var(--accent);
+            width: 18px;
+        }
+
+        .btn-price {
             display: block;
-            margin: 10px 0;
-            color: #00ff88;
-            text-decoration: underline;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
+        .btn-price:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .pricing-card.main .btn-price {
+            background: #6366f1;
+        }
+
+        .pricing-card.main .btn-price:hover {
+            background: #818cf8;
+        }
+
+        /* --- Form (Lead Magnet) --- */
+        #register-area {
+            background: linear-gradient(0deg, #020205 0%, #111 100%);
+            padding: 100px 20px;
+            border-top: 1px solid #222;
+        }
+
+        .form-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #0f1016;
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid #2d2d3a;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            background: #050508;
+            border: 1px solid #2d2d3a;
+            color: #fff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            font-family: var(--font-main);
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #6366f1;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: var(--glass-border);
+            padding: 50px 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BrandsXperts.</div>
+            <div class="nav-links">
+                <a href="#benefits">Solución</a>
+                <a href="#how">Cómo Funciona</a>
+                <a href="#pricing">Precios</a>
+            </div>
+            <a href="#register-area" class="btn-nav">Crear Cuenta</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
     <header class="hero">
-        <h1>Tu Sistema de Ventas<br>Listo en 60 Segundos.</h1>
-        <p>No contrates agencia. Sé la agencia. Plataforma automatizada de crecimiento digital.</p>
-        <a href="#pricing" class="cta">Ver Planes</a>
+        <div class="hero-badge">🚀 Nuevo SaaS 2026</div>
+        <h1>Tu Sistema de Ventas<br>Listo en 60 Segundos</h1>
+        <p>Olvídate de contratar agencias costosas. Con BrandsXperts, obtienes tu propia plataforma automatizada para
+            captar clientes, gestionar leads y cerrar ventas hoy mismo.</p>
+
+        <div class="hero-buttons">
+            <a href="#pricing" class="btn-primary">Ver Planes</a>
+            <a href="#how" class="btn-outline">Saber Más</a>
+        </div>
     </header>
 
-    <section id="pricing" class="grid">
-        <div class="card">
-            <h3>Plan Inicial</h3>
-            <div class="price">$49/mes</div>
-            <p>Landing Page de Alta Conversión</p>
-            <button onclick="selectPlan('plan1')" class="cta" style="border:none; width:100%">Elegir Plan</button>
-        </div>
-        <div class="card" style="border-color: #00ff88; transform: scale(1.05);">
-            <h3>Plan Crecimiento</h3>
-            <div class="price">$99/mes</div>
-            <p>Web Completa + Panel</p>
-            <button onclick="selectPlan('plan2')" class="cta" style="border:none; width:100%">Elegir
-                Recomendado</button>
-        </div>
-        <div class="card">
-            <h3>Plan Dominio</h3>
-            <div class="price">$199/mes</div>
-            <p>Full Suite + Blog SEO</p>
-            <button onclick="selectPlan('plan3')" class="cta" style="border:none; width:100%">Elegir Plan</button>
+    <!-- Problem / Solution Grid -->
+    <section id="benefits" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Por qué elegir BrandsXperts?</h2>
+                <p>La tecnología que usan las grandes marcas, ahora a tu alcance.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="feature-box">
+                    <div class="icon-box">⚡</div>
+                    <h3>Velocidad Extrema</h3>
+                    <p>No esperes semanas. Tu Landing Page, CRM y panel de control se despliegan automáticamente en
+                        menos de un minuto.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-box">🤖</div>
+                    <h3>CRM en Piloto Automático</h3>
+                    <p>Centraliza tus leads de WhatsApp y Web. Nunca pierdas un cliente potencial por falta de
+                        seguimiento.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-box">📅</div>
+                    <h3>Agendamiento Smart</h3>
+                    <p>Integra calendarios como Cal.com para que tus clientes agenden citas contigo sin intercambio de
+                        mensajes.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="register">
-        <div class="form-container">
-            <h2 style="text-align: center; margin-top: 0;">🚀 Configura tu Agencia</h2>
-            <form id="regForm">
-                <div class="form-group">
-                    <label>Nombre de tu Agencia</label>
-                    <input type="text" id="name" required placeholder="Ej: Digital Boost">
-                </div>
-                <div class="form-group">
-                    <label>WhatsApp (Owner)</label>
-                    <input type="tel" id="whatsapp" required placeholder="Ej: 51999999999">
-                </div>
-                <div class="form-group">
-                    <label>Plan Seleccionado</label>
-                    <select id="plan" required>
-                        <option value="plan1">Plan Inicial ($49)</option>
-                        <option value="plan2" selected>Plan Crecimiento ($99)</option>
-                        <option value="plan3">Plan Dominio ($199)</option>
-                    </select>
-                </div>
-                <button type="submit" class="cta" style="border:none; width:100%">🔥 ACTIVAR SISTEMA AHORA</button>
-            </form>
-
-            <div id="loader" class="loader">
-                🔮 Construyendo tu infraestructura SaaS...<br>
-                <small>(Esto puede tomar unos 10 segundos)</small>
+    <!-- How it works -->
+    <section id="how" class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lanza tu Agencia en 3 Pasos</h2>
+                <p>Simplificamos lo complejo.</p>
             </div>
 
-            <div id="success">
-                <div class="success-box">
-                    <h3>✅ ¡Sistema Activado Exitosamente!</h3>
-                    <p>Tu agencia está lista para operar.</p>
+            <div class="grid-3" style="text-align: center;">
+                <div style="padding: 20px;">
+                    <h1 style="font-size: 4rem; margin:0; opacity:0.1;">01</h1>
+                    <h3>Elige tu Plan</h3>
+                    <p>Selecciona el paquete que mejor se adapte a tu etapa de crecimiento.</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h1 style="font-size: 4rem; margin:0; opacity:0.1;">02</h1>
+                    <h3>Activa el Sistema</h3>
+                    <p>Llena el formulario y deja que nuestra IA construya tu infraestructura.</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h1 style="font-size: 4rem; margin:0; opacity:0.1; color: #00ff88;">03</h1>
+                    <h3>Empieza a Vender</h3>
+                    <p>Recibe tu URL, panel y accesos inmediatamente. ¡Estás en vivo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div style="text-align: left; margin-top: 15px;">
-                        <label>🌐 Tu Sitio Web Público:</label>
-                        <a id="publicUrl" href="#" target="_blank" class="url-link">...</a>
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Planes Transparentes (Perú)</h2>
+                <p>Sin costos ocultos. Cancela cuando quieras.</p>
+            </div>
 
-                        <label style="margin-top: 10px;">🔑 Tu Panel de Administración:</label>
-                        <a id="adminUrl" href="#" target="_blank" class="url-link">...</a>
+            <div class="grid-3">
+                <!-- Basic -->
+                <div class="pricing-card sub">
+                    <div class="plan-name">PLAN BÁSICO</div>
+                    <div class="plan-price">S/ 300 <span>/mes</span></div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Landing Page Profesional</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> WhatsApp Básico</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Correos Corporativos</li>
+                    </ul>
+                    <button onclick="selectPlan('plan1')" class="btn-price">Elegir Básico</button>
+                </div>
+
+                <!-- Growth -->
+                <div class="pricing-card main">
+                    <div class="plan-name" style="color:#818cf8;">PLAN CRECIMIENTO</div>
+                    <div class="plan-price">S/ 600 <span>/mes</span></div>
+                    <div style="color:#94a3b8; font-size:0.9rem; margin-bottom:10px;">El más popular</div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> <b>Todo lo del Básico</b></li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Web Multipágina</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Panel de Gestión Leads</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Soporte Prioritario</li>
+                    </ul>
+                    <button onclick="selectPlan('plan2')" class="btn-price">Elegir Recomendado</button>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card sub">
+                    <div class="plan-name">PLAN DOMINIO</div>
+                    <div class="plan-price">S/ 1000 <span>/mes</span></div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> <b>Suite Completa</b></li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Blog & Estrategia SEO</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg> Dominio Gratis 1 año</li>
+                    </ul>
+                    <button onclick="selectPlan('plan3')" class="btn-price">Elegir Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activation Engine -->
+    <section id="register-area">
+        <div class="form-wrapper" id="regFormContainer">
+            <h2 style="text-align: center; margin-top: 0;">⚡ Activa tu Sistema</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">
+                Ingresa tus datos y nuestra IA construirá tu sitio web al instante.
+            </p>
+
+            <form id="regForm">
+                <div class="form-group">
+                    <label class="form-label">Nombre de tu Negocio</label>
+                    <input type="text" class="form-input" id="name" required placeholder="Ej: Estudio Jurídico Lima">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">WhatsApp (Administrador)</label>
+                    <input type="tel" class="form-input" id="whatsapp" required placeholder="Ej: 5199999999">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Plan Seleccionado</label>
+                    <select id="plan" class="form-input" required>
+                        <option value="plan1">Plan Básico (S/ 300)</option>
+                        <option value="plan2" selected>Plan Crecimiento (S/ 600)</option>
+                        <option value="plan3">Plan Dominio (S/ 1000)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">🔥 CREAR MI AGENCIA AHORA</button>
+            </form>
+
+            <!-- States -->
+            <div id="loader" style="display: none; text-align: center;">
+                <h3 style="color:#818cf8;">🔮 Construyendo Infraestructura...</h3>
+                <p style="color:#ccc;">Estamos clonando repositorios, configurando la base de datos y desplegando en la
+                    nube.<br>Espera unos segundos.</p>
+            </div>
+
+            <div id="success" style="display: none; text-align: center;">
+                <div
+                    style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 20px; border-radius: 10px;">
+                    <h3 style="color:#10b981;">¡Sistema Listo! 🚀</h3>
+                    <p style="color:#fff;">Tu agencia ha sido desplegada con éxito.</p>
+                    <div style="margin-top: 20px; text-align: left; padding: 0 20px;">
+                        <span style="color:#94a3b8; display:block; font-size:0.8rem; margin-bottom:5px;">TU SITIO
+                            WEB:</span>
+                        <a id="publicUrl" href="#" target="_blank"
+                            style="color:#4f46e5; font-weight:bold; font-size:1.1rem; display:block; margin-bottom:15px;">loading...</a>
+
+                        <span style="color:#94a3b8; display:block; font-size:0.8rem; margin-bottom:5px;">PANEL DE
+                            CONTROL:</span>
+                        <a id="adminUrl" href="#" target="_blank"
+                            style="color:#ec4899; font-weight:bold; font-size:1.1rem; display:block;">loading...</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">BrandsXperts</div>
+            <p>&copy; 2026 BrandsXperts Inc. Transformando negocios en Perú y Latam.</p>
+            <div style="margin-top: 20px;">
+                <a href="privacy.html" style="margin: 0 10px;">Privacidad</a>
+                <a href="terms.html" style="margin: 0 10px;">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://api.whatsapp.com/send/?phone=51994195583" target="_blank" class="bx-wsp-float"
+        style="position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 14px 18px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 9999;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;">
+            <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.54 1.973.832 3.246.832 3.178 0 5.765-2.587 5.765-5.767s-2.586-5.766-5.765-5.766zm6.392 8.246h.001c-.263.784-.875 1.428-1.637 1.772-1.28.577-3.905 1.517-7.85-2.308-.415-.403-.68-.829-.982-1.325.294-.496.559-.922.974-1.325.323-.312.607-.645.823-1.002.348-.574.675-1.127.978-1.721.282-.553.535-1.127.76-1.721h-.001c-.571 0-1.077.213-1.468.563-.42.378-.731.868-.901 1.393-.207.635-.295 1.303-.255 1.969.049.803.268 1.581.652 2.285.45.823 1.037 1.565 1.745 2.196.726.648 1.554 1.171 2.453 1.536.838.341 1.734.508 2.627.48.665-.021 1.319-.136 1.94-.342.529-.176 1.018-.466 1.419-.854.382-.37.625-.867.658-1.428.006-.112.008-.225.006-.339-.015-.718-.112-1.427-.306-2.115z" />
+        </svg>
+        <span>WhatsApp</span>
+    </a>
+
+    <!-- Logic -->
     <script>
         function selectPlan(plan) {
             document.getElementById('plan').value = plan;
-            document.getElementById('register').scrollIntoView();
+            document.getElementById('register-area').scrollIntoView();
         }
 
         document.getElementById('regForm').addEventListener('submit', async (e) => {
@@ -251,23 +714,25 @@
             const btn = e.target.querySelector('button');
             const loader = document.getElementById('loader');
             const success = document.getElementById('success');
+            const form = document.getElementById('regForm');
 
             // Lock UI
             btn.style.opacity = '0.5';
             btn.disabled = true;
+            form.style.display = 'none';
             loader.style.display = 'block';
-            success.style.display = 'none';
 
+            // Payload
             const payload = {
                 name: document.getElementById('name').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 plan: document.getElementById('plan').value,
-                amount: '0.00', // Demo Mode
-                payment_method: 'Landing_Form'
+                amount: '0.00',
+                payment_method: 'Sasstech_Landing'
             };
 
             try {
-                // Submit to Factory API
+                // Factory API
                 const response = await fetch('https://brandsxperts-factory.netlify.app/.netlify/functions/register-client', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -277,22 +742,21 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    // Show Success
+                    // Success
                     loader.style.display = 'none';
                     success.style.display = 'block';
-                    e.target.style.display = 'none'; // Hide form
 
                     document.getElementById('publicUrl').href = result.urls.public;
                     document.getElementById('publicUrl').innerText = result.urls.public;
-
                     document.getElementById('adminUrl').href = result.urls.admin;
                     document.getElementById('adminUrl').innerText = result.urls.admin;
                 } else {
-                    throw new Error(result.error || 'Activation Failed');
+                    throw new Error(result.error || 'Fallo en activación');
                 }
 
             } catch (err) {
-                alert('🚨 Error: ' + err.message);
+                alert('Error: ' + err.message);
+                form.style.display = 'block';
                 btn.style.opacity = '1';
                 btn.disabled = false;
                 loader.style.display = 'none';
